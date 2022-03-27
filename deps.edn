@@ -1,0 +1,16 @@
+{:paths ["src" "resources" "tests"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.3"}
+        commons-codec/commons-codec {:mvn/version "1.15"}}
+ :aliases
+ {:cider {:extra-deps {org.clojure/clojure {:mvn/version "1.10.3"}
+                       cider/cider-nrepl {:mvn/version "0.28.3"}}
+          :main-opts ["-m" "nrepl.cmdline" "--port" "7070" "--middleware" "[cider.nrepl/cider-middleware]"]}
+  :run-m {:main-opts ["-m" "com.ludwinas.cryptopals"]}
+  :build {:deps {io.github.seancorfield/build-clj
+                 {:git/tag "v0.6.3" :git/sha "9b8e09b"
+                  ;; since we're building an app uberjar, we do not
+                  ;; need deps-deploy for clojars.org deployment:
+                  :deps/root "slim"}}
+          :ns-default build}
+  :test {:extra-deps {lambdaisland/kaocha {:mvn/version "1.64.1010"}}}}}
+
